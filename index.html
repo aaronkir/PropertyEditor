@@ -1,0 +1,80 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript: Hallo Welt</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Property Editor</h1>
+    <div>
+        Press + to start entering key/value pairs.
+    </div>
+    <div id="actions">
+        <button id="add_row"><img src="01_plus.svg" width="20" /></button>
+        <button id="resolve"><img src="04_expand.svg" width="20" /></button>
+    </div>
+    <div>
+        <table id="prop">
+            <tr>
+                <th>Key</th>
+                <th>Value</th>
+                <th>Resolved Value</th>
+                <th colspan=3>Actions</th>
+            </tr>
+        </table>
+    </div>
+</body>
+<script>
+    var addRowButton = document.getElementById('add_row');
+    addRowButton.addEventListener('click', addRow, true);
+
+    function addRow() {
+        // Find a <table> element with id="myTable":
+        var table = document.getElementById("prop");
+
+        // Create an empty <tr> element and add it to the 1st position of the table:
+        var numLines = table.rows.length;
+        var row = table.insertRow(numLines);
+
+        // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+
+        // Add some text to the new cells:
+        cell1.innerHTML = '<input type="text" id="key">';
+        cell2.innerHTML = '<input type="text" id="value">';
+        cell3.innerHTML = 'value';
+        cell4.innerHTML = '<button id="' + numLines + '" onClick="save(this.id)"><img src="05_save.svg" width="20" /></button>'
+                         +'<button id="' + numLines + '" onClick="editRow(this.id)"><img src="03_edit.svg" width="20" /></button>'
+                         +'<button id="' + numLines + '" onClick="deleteRow(this.id)"><img src="02_minus.svg" width="20" /></button>'
+    }
+
+    function deleteRow(lineNumber) {
+        var table = document.getElementById("prop");
+        table.deleteRow(lineNumber);
+    }
+
+    function editRow(lineNumber) {
+        var table = document.getElementById("prop");
+        alert(lineNumber);
+    }
+    function save(lineNumber) {
+        var table = document.getElementById("prop");
+        
+    }
+</script>
+<noscript>
+    Sie haben JavaScript deaktiviert.
+</noscript>
+
+</html>
